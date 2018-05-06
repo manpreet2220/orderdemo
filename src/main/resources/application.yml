@@ -1,0 +1,66 @@
+# This file should give reasonable defaults where applicable. When deploying to production, make sure to provide an override file if needed.
+spring:
+  application:
+    # This is the name that is registered with Eureka. Configure a default name here, and override in project config if needed.
+    name: orderplacement
+  h2:
+    console:
+      enabled: true
+      path: /h2_console
+  datasource:
+    url: jdbc:h2:file:./orderplacement;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+logging:
+   level:
+     org.hibernate.SQL: debug
+     org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+# server port 0 gives random port. Best combined with Eureka.
+# In development use Spring runner in IntelliJ to start stop services, it will highlight the running port.
+server:
+  port: 8086
+
+security:
+
+
+  oauth2:
+    enabled: false
+    resource:
+      jwt:
+        keyValue: yourSecret
+      filter-order: 3
+
+
+eureka:
+  client:
+    # Disabled in development to avoid tons of missing eureka exceptions if you test the service standalone.
+    enabled: false
+
+---
+spring:
+  profiles: test
+  h2:
+    console:
+      enabled: true
+      path: /h2_console
+  datasource:
+    url: jdbc:h2:mem:./orderplacementTest;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  # change the port number here if you want a fixed port in development
+  port: 8086
+eureka:
+  client:
+    # Disabled in development to avoid tons of missing eureka exceptions if you test the service standalone.
+    enabled: false
