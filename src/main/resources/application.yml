@@ -37,10 +37,7 @@ security:
       filter-order: 3
 
 
-eureka:
-  client:
-    # Disabled in development to avoid tons of missing eureka exceptions if you test the service standalone.
-    enabled: false
+
 
 ---
 spring:
@@ -50,7 +47,7 @@ spring:
       enabled: true
       path: /h2_console
   datasource:
-    url: jdbc:h2:mem:./orderplacementTest;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:./orderplacementTest;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
     driverClassName: org.h2.Driver
@@ -60,7 +57,3 @@ spring:
 server:
   # change the port number here if you want a fixed port in development
   port: 8086
-eureka:
-  client:
-    # Disabled in development to avoid tons of missing eureka exceptions if you test the service standalone.
-    enabled: false

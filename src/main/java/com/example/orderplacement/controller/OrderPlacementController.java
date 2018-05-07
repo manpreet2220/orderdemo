@@ -79,7 +79,8 @@ public class OrderPlacementController {
   //Method to edit selected service order
   @CrossOrigin(origins = "http://localhost:3000")
   @RequestMapping(value = "/orderplacement/serviceOrders/{serviceOrderId}", method = RequestMethod.PUT)
-  Long editServiceOrderById(@PathVariable("serviceOrderId") String serviceOrderId,@RequestParam Map<String, String> requestParametes,
+  Long editServiceOrderById(@PathVariable("serviceOrderId") String serviceOrderId,
+                            @RequestParam Map<String, String> requestParametes,
                             @RequestParam("serviceTypes") String[] serviceTypes
                                     ) throws IOException, ParseException {
     try {

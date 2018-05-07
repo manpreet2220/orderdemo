@@ -23,7 +23,7 @@ public class ServiceOrder {
 
     private String note;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "customer_id"
     )
     private Customer customer;

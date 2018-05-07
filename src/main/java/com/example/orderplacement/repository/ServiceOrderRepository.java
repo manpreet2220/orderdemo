@@ -12,7 +12,8 @@ import java.util.List;
 public interface ServiceOrderRepository extends CrudRepository<ServiceOrder, Long> {
 
 
-  @Query("Select sv.serviceOrderId,sv.customer.name,c.phoneNumber,sv.serviceType  from ServiceOrder sv " +
+  @Query("Select sv.serviceOrderId,sv.customer.name,c.phoneNumber,sv.serviceType,sv.fromAddress,sv.toAddress" +
+          " from ServiceOrder sv " +
           "inner join sv.customer c order by sv.serviceOrderId desc")
   List<Object[]> findAllServiceOrders();
 

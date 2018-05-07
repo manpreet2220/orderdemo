@@ -26,7 +26,15 @@ public class OrderPlacementServiceImpl implements OrderPlacementService {
   @Autowired
   ServiceOrderRepository serviceOrderRepository;
 
-  Customer setDataOfCustomer(Map<String, String> requestParameters,Customer customer){
+  public void setCustomerRepository(CustomerRepository customerRepository) {
+    this.customerRepository = customerRepository;
+  }
+
+  public void setServiceOrderRepository(ServiceOrderRepository serviceOrderRepository) {
+    this.serviceOrderRepository = serviceOrderRepository;
+  }
+
+  Customer setDataOfCustomer(Map<String, String> requestParameters, Customer customer){
     String name = requestParameters.get("name");
     String email = requestParameters.get("email");
     String phone = requestParameters.get("phone");
@@ -53,6 +61,7 @@ public class OrderPlacementServiceImpl implements OrderPlacementService {
     String serviceDateInString = requestParameters.get("serviceDate");
     String note = requestParameters.get("note");
     Date serviceDate = null;
+
     if (!serviceDateInString.isEmpty()) {
       serviceDate = new SimpleDateFormat("yyyy-MM-dd").parse(serviceDateInString);
     }
